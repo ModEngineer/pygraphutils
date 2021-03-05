@@ -3,7 +3,7 @@
 
  Proper testing on this library has not been done, so this should not be used for any critical projects. Please report any bugs by submitting an [issue](https://github.com/ModEngineer/pygraphutils/issues) or [pull request](https://github.com/ModEngineer/pygraphutils/pulls).
 # Installation:
- 1. Download the `pygraphutils` folder or the entire repo
+ 1. Download the repository. All files should be in a folder called `pygraphutils` without any subfolders and/or duplicate parent folders (e.g. no `pygraphutils\module` ).
  2. Copy the `pygraphutils` folder to a path relative to your script or into your modules installation folder
  3. Follow the instructions below that best fit your installation method:
   * If installing to the modules installation folder, follow the steps below:
