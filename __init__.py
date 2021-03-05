@@ -304,7 +304,6 @@ def auto_split(graphData, returnGraphs=True, returnPaths=False):
         output["graphs"] = []
     if returnPaths:
         output["paths"] = []
-    print("Fleurytest")
     fleuryTest = fleury(graphData)
     if fleuryTest:
         if returnGraphs:
@@ -315,7 +314,6 @@ def auto_split(graphData, returnGraphs=True, returnPaths=False):
     eulerianParts = []
     tempGData = deepcopy(graphData)
     while tempGData:
-        print("tempGData loop step 1", tempGData)
         currentFleury = fleury(tempGData, False)
         eulerianParts.append(currentFleury)
         if returnGraphs:
@@ -325,7 +323,6 @@ def auto_split(graphData, returnGraphs=True, returnPaths=False):
             remove_edge(node1, node2, tempGData)
             if returnGraphs:
                 add_edge(node1, node2, output["graphs"][-1])
-        print("tempGData loop step 2", tempGData)
         tempTempGData = deepcopy(tempGData)
         for node in tempTempGData:
             if not tempGData[node]:
@@ -334,7 +331,6 @@ def auto_split(graphData, returnGraphs=True, returnPaths=False):
                     output["graphs"].append([node])
                 remove_node(node, tempGData)
         del tempTempGData
-        print("tempGData loop step 3", tempGData)
     if returnPaths:
         output["paths"] = eulerianParts
     return output
