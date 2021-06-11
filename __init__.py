@@ -287,10 +287,14 @@ def fleury(graphData, checkPath=True):
     if checkPath:
         for node in graphData:
             for connection in graphData[node]:
+                listContainedList = False
                 for index in range(len(path) - 1):
-                    if not __list_contains_list(
+                    if  __list_contains_list(
                         [node, connection], [path[index], path[index + 1]]):
-                        return None
+                        listContainedList = True
+                        break
+                if not listContainedList:
+                    return None
     return path
 
 
