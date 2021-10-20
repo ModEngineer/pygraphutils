@@ -46,17 +46,18 @@ class ExitContainer():
         #Non-int code handling
         self.code = code
         #Positive code handling and exception warning
-        if code >= 0:
-            if exception != None:
-                warnings.warn(
-                    "ExitContainer with an exception should not have a positive code.",
-                    category=ExitContainer.ExitContainerWarning)
-        #Negative code handling and exception warning
-        elif code < 0:
-            if exception == None:
-                warnings.warn(
-                    "ExitContainer without an exception should not have a negative code.",
-                    category=ExitContainer.ExitContainerWarning)
+        if type(code) is int:
+            if code >= 0:
+                if exception != None:
+                    warnings.warn(
+                        "ExitContainer with an exception should not have a positive code.",
+                        category=ExitContainer.ExitContainerWarning)
+            #Negative code handling and exception warning
+            elif code < 0:
+                if exception == None:
+                    warnings.warn(
+                        "ExitContainer without an exception should not have a negative code.",
+                        category=ExitContainer.ExitContainerWarning)
 
     def raise_exception(self):
         """A function that raises the ExitContainer's exception if it has an exception stored"""
