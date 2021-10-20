@@ -43,8 +43,8 @@ class ExitContainer():
                 self.code = 0
             else:
                 self.code = -0x1
-        #Non-int code handling
-        self.code = code
+        else:
+            self.code = code
         #Positive code handling and exception warning
         if type(code) is int:
             if code >= 0:
