@@ -261,7 +261,7 @@ def fleury(graphData, checkPath=True):
         if len(tempGData[node]) % 2 == 1:
             endpoints.append(node)
     if len(endpoints) == 0:
-        currentNode = tempGData[list(tempGData.keys())[0]]
+        currentNode = list(tempGData.keys())[0]
     else:
         currentNode = endpoints[0]
     path = [currentNode]
@@ -289,8 +289,8 @@ def fleury(graphData, checkPath=True):
             for connection in graphData[node]:
                 listContainedList = False
                 for index in range(len(path) - 1):
-                    if  __list_contains_list(
-                        [node, connection], [path[index], path[index + 1]]):
+                    if __list_contains_list([node, connection],
+                                            [path[index], path[index + 1]]):
                         listContainedList = True
                         break
                 if not listContainedList:
