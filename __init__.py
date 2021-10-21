@@ -298,43 +298,41 @@ def fleury(graphData, checkPath=True):
     return path
 
 
-#Automatic splitting of graph into multiple graphs with Eulerian paths
-
-
-def auto_split(graphData, returnGraphs=True, returnPaths=False):
-    assert returnGraphs or returnPaths, "auto_split must have a selected return value."
-    output = {}
-    if returnGraphs:
-        output["graphs"] = []
-    if returnPaths:
-        output["paths"] = []
-    fleuryTest = fleury(graphData)
-    if fleuryTest:
-        if returnGraphs:
-            output["graphs"] = [graphData]
-        if returnPaths:
-            output["paths"] = [fleuryTest]
-        return output
-    eulerianParts = []
-    tempGData = deepcopy(graphData)
-    while tempGData:
-        currentFleury = fleury(tempGData, False)
-        eulerianParts.append(currentFleury)
-        if returnGraphs:
-            output["graphs"].append({})
-        for index, node1 in enumerate(currentFleury[:-1]):
-            node2 = currentFleury[index + 1]
-            remove_edge(node1, node2, tempGData)
-            if returnGraphs:
-                add_edge(node1, node2, output["graphs"][-1])
-        tempTempGData = deepcopy(tempGData)
-        for node in tempTempGData:
-            if not tempGData[node]:
-                if returnGraphs and not node in __collapse_list_list(
-                        eulerianParts):
-                    output["graphs"].append([node])
-                remove_node(node, tempGData)
-        del tempTempGData
-    if returnPaths:
-        output["paths"] = eulerianParts
-    return output
+# Automatic splitting of graph into multiple graphs with Eulerian paths (NOT FUNCTIONAL)
+# def auto_split(graphData, returnGraphs=True, returnPaths=False):
+#     assert returnGraphs or returnPaths, "auto_split must have a selected return value."
+#     output = {}
+#     if returnGraphs:
+#         output["graphs"] = []
+#     if returnPaths:
+#         output["paths"] = []
+#     fleuryTest = fleury(graphData)
+#     if fleuryTest:
+#         if returnGraphs:
+#             output["graphs"] = [graphData]
+#         if returnPaths:
+#             output["paths"] = [fleuryTest]
+#         return output
+#     eulerianParts = []
+#     tempGData = deepcopy(graphData)
+#     while tempGData:
+#         currentFleury = fleury(tempGData, False)
+#         eulerianParts.append(currentFleury)
+#         if returnGraphs:
+#             output["graphs"].append({})
+#         for index, node1 in enumerate(currentFleury[:-1]):
+#             node2 = currentFleury[index + 1]
+#             remove_edge(node1, node2, tempGData)
+#             if returnGraphs:
+#                 add_edge(node1, node2, output["graphs"][-1])
+#         tempTempGData = deepcopy(tempGData)
+#         for node in tempTempGData:
+#             if not tempGData[node]:
+#                 if returnGraphs and not node in __collapse_list_list(
+#                         eulerianParts):
+#                     output["graphs"].append([node])
+#                 remove_node(node, tempGData)
+#         del tempTempGData
+#     if returnPaths:
+#         output["paths"] = eulerianParts
+#     return output
