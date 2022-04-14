@@ -268,10 +268,10 @@ def fleury(graphData, checkPath=True):
     #Mainloop
     while tempGData[currentNode]:
         #Next-edge-finder. Prefers non-bridges
-        bridges = find_bridges(tempGData)
+        filtered_bridges = [bridge[bridge[0]==currentNode] for bridge in find_bridges(tempGData) if bridge[0] == currentNode or bridge[1] == currentNode]
         nonBridgeConnections = [
             connection for connection in tempGData[currentNode]
-            if not connection in bridges
+            if not connection in filtered_bridges
         ]
         if nonBridgeConnections:
             nextNode = nonBridgeConnections[0]
